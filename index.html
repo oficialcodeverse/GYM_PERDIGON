@@ -114,10 +114,6 @@ section{position:relative;background:radial-gradient(640px 280px at 100% 0,rgba(
 /* Portada: orbes de color que flotan, anillos que laten y entrada escalonada */
 .hero{overflow:hidden;background:radial-gradient(700px 360px at 50% 0,rgba(217,4,41,.11),transparent 70%),linear-gradient(180deg,#fff,#fff4f6)}
 .hero>div{position:relative;z-index:1}
-.orb{position:absolute;border-radius:50%;pointer-events:none;animation:float 9s ease-in-out infinite alternate}
-.o1{width:340px;height:340px;left:-90px;bottom:-120px;background:radial-gradient(circle,rgba(217,4,41,.22),transparent 68%)}
-.o2{width:300px;height:300px;right:-70px;top:-90px;background:radial-gradient(circle,rgba(255,120,140,.28),transparent 68%);animation-delay:-4s}
-@keyframes float{to{transform:translate3d(26px,-18px,0) scale(1.08)}}
 .rg{position:absolute;left:50%;top:50%;width:min(560px,86%);aspect-ratio:1;translate:-50% -50%;border:1.5px solid rgba(217,4,41,.24);border-radius:50%;pointer-events:none;animation:rg 6s ease-out infinite}
 .rg.r2{animation-delay:-3s}
 @keyframes rg{from{transform:scale(.5);opacity:.9}to{transform:scale(1.3);opacity:0}}
@@ -135,8 +131,8 @@ section{position:relative;background:radial-gradient(640px 280px at 100% 0,rgba(
 .cg button.ev{background:rgba(217,4,41,.09)}.cg button.sel{background:var(--r);color:#fff;border-color:var(--r)}.cg button.sel:after{background:#fff}
 #ed p{border-left:3px solid var(--r);padding-left:12px}#ed p.sub{border:0;padding:0}
 .ci svg{transition:transform .3s}.ci:hover svg{transform:scale(1.15) rotate(-6deg)}
-@media(max-width:860px){.duo{grid-template-columns:1fr}.cal{padding:16px}.rg{width:96%}.o1,.o2{width:240px;height:240px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}.orb,.rg{display:none}}
+@media(max-width:860px){.duo{grid-template-columns:1fr}.cal{padding:16px}.rg{width:96%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}.rg{display:none}}
 /* Eventos a todo el ancho bajo calendario y contacto; planes en 4 columnas en escritorio */
 #ed{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 22px}#ed>br{display:none}#ed h3{grid-column:1/-1}.ch{text-transform:none}#mt{display:inline-block}#mt::first-letter{text-transform:uppercase}
 @media(min-width:861px){#pl{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
@@ -155,7 +151,7 @@ section{position:relative;background:radial-gradient(640px 280px at 100% 0,rgba(
 <!-- ===== VISTA 1: WEB PRINCIPAL (#mv) ===== -->
 <div id="mv">
 <!-- Inicio: presentación, estadísticas animadas, mapa de ubicación y contactos -->
-<section class="hero" id="inicio"><i class="orb o1"></i><i class="orb o2"></i><i class="rg"></i><i class="rg r2"></i><div>
+<section class="hero" id="inicio"><i class="rg"></i><i class="rg r2"></i><div>
  <p class="eb">Gimnasio · Relax · Bienestar</p>
  <h1>GYM<br><em>PERDIGÓN</em></h1>
  <p class="sub">Entrena con estilo, recupérate con calma.</p>
