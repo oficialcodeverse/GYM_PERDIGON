@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#E7E9ED">
 <title>GYM PERDIGÓN</title>
 <style>
 /* ============================================================
@@ -13,19 +13,21 @@
 :root{--r:#D90429;--rd:#8D0A1C;--ink:#15171C;--g1:#F5F6F8;--g2:#E3E5E9;--g3:#6B7280;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:inherit;margin:0}
-/* html con fondo blanco propio: evita que se vea otro color al hacer scroll/rebote en celulares */
-html{scroll-behavior:smooth;scroll-padding-top:90px;background:#fff;overscroll-behavior-y:none}
+/* html con fondo gris propio: evita que se vea otro color al hacer scroll/rebote en celulares */
+html{scroll-behavior:smooth;scroll-padding-top:90px;background:#E7E9ED;overscroll-behavior-y:none}
 body{color:var(--ink);font:16px/1.6 system-ui,"Segoe UI",Arial,sans-serif;overflow-x:hidden}
-/* Fondo decorativo fijo y barato (solo degradados, sin filtros): manchas rojas y grises suaves */
-body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(620px 420px at 92% -5%,rgba(217,4,41,.11),transparent),radial-gradient(520px 420px at -5% 45%,rgba(107,114,128,.13),transparent),#fff}
+/* Fondo fijo gris, liso y barato */
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:#E7E9ED}   /* fondo grisáceo liso */
 h1,h2,h3{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;font-weight:700;line-height:1.08}
 h2{font-size:clamp(2rem,5vw,3.1rem);margin:6px 0 10px}h2 em,h1 em{color:var(--r);font-style:italic}
 .eb{color:var(--r);font:700 .78rem system-ui;letter-spacing:.28em;text-transform:uppercase}   /* etiqueta pequeña sobre cada título */
-section{padding:80px 5%;max-width:1200px;margin:auto}
+/* Cada sección es un panel blanco con sombra leve sobre el fondo gris */
+section{width:min(1200px,92%);margin:26px auto;padding:56px 5%;background:#fff;border-radius:28px;box-shadow:0 8px 32px rgba(21,23,28,.09)}
+.top{margin-top:104px}
 .sub{color:var(--g3);margin-bottom:28px;max-width:620px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
 /* Tarjeta base: sombra suave; al pasar el cursor sube y se dibuja una barra roja arriba */
-.card{background:#fff;border:1px solid var(--g2);border-radius:20px;padding:26px;box-shadow:0 10px 30px rgba(21,23,28,.06);position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s}
+.card{background:#fff;border:1px solid var(--g2);border-radius:20px;padding:26px;box-shadow:0 6px 20px rgba(21,23,28,.07);position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s}
 .card:before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--r);transform:scaleX(0);transform-origin:left;transition:transform .45s}
 @media(hover:hover){.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(217,4,41,.16);border-color:rgba(217,4,41,.35)}.card:hover:before{transform:scaleX(1)}}
 .card:active:before{transform:scaleX(1)}
@@ -44,17 +46,13 @@ nav ul{display:flex;gap:20px;list-style:none;padding:0}nav ul a{color:var(--ink)
 nav ul a:after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--r);transform:scaleX(0);transition:transform .3s}nav ul a:hover:after{transform:scaleX(1)}
 #bg{display:none;background:none;border:1.5px solid var(--ink);color:var(--ink);padding:5px 12px;border-radius:999px;font-size:1.1rem}
 /* Inicio: texto a la izquierda, mapa y contactos a la derecha */
-.hero{padding-top:130px;min-height:100svh;display:grid;gap:30px;grid-template-columns:1.1fr 1fr;align-items:center}
+.hero{margin-top:104px;min-height:74svh;display:grid;place-items:center;text-align:center;padding-top:72px;padding-bottom:72px}.hero .sub{margin-left:auto;margin-right:auto}
 .hero h1{font-size:clamp(3.2rem,9vw,6.4rem)}
-.hero p.sub{margin:16px 0 24px}
+.hero p.sub{margin:16px auto 28px}
 .map{padding:14px}.map svg{width:100%;display:block;border-radius:14px;background:var(--g1)}
 .route{stroke-dasharray:6 8;animation:dash 1.4s linear infinite}@keyframes dash{to{stroke-dashoffset:-28}}   /* ruta que "avanza" */
 .pin{transform-box:fill-box;transform-origin:center;animation:pu 2s infinite}@keyframes pu{0%{transform:scale(.4);opacity:1}100%{transform:scale(2.8);opacity:0}}
 .cn{display:grid;gap:12px;margin-top:14px}.ci{display:flex;align-items:center;gap:14px;padding:14px 18px;color:var(--ink);text-decoration:none}.ci svg{width:30px;height:30px;fill:var(--r);flex:none}
-.stats{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}.stats b{display:block;font:700 2.4rem Georgia,serif;color:var(--r)}.stats span{color:var(--g3);font-size:.85rem}
-/* Cinta de texto que se desplaza (movimiento barato: solo transform) */
-.mq{overflow:hidden;background:var(--ink);color:#fff;padding:14px 0;font:700 1rem Georgia,serif;letter-spacing:.3em;white-space:nowrap}
-.mq div{display:inline-block;animation:mq 28s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
 /* Aparición al hacer scroll */
 .rv{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
 /* Plan destacado: tarjeta oscura con acentos rojos */
@@ -73,22 +71,19 @@ input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1.5px so
 .ph{aspect-ratio:4/3;border:1.5px dashed var(--g2);border-radius:14px;display:grid;place-items:center;color:var(--g3);font-size:.8rem;margin-bottom:12px;background:var(--g1);text-align:center}
 .q{display:flex;gap:8px;align-items:center;margin:5px 0}.q button{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--r);background:#fff;color:var(--r);cursor:pointer;font-weight:700}
 .adg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:12px 0}.ar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px solid var(--g2)}.ar input{width:90px}.ar .btn{padding:6px 14px}
-/* Botón flotante de WhatsApp (el pulso usa transform+opacity, no box-shadow, para ir fluido) */
-#wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:56px;height:56px;border-radius:50%;background:var(--r);display:grid;place-items:center;box-shadow:0 8px 22px rgba(217,4,41,.45)}#wa svg{width:30px;fill:#fff}
-#wa:before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--r);animation:pu 2.2s infinite}
 footer{text-align:center;padding:34px 5%;color:var(--g3);border-top:1px solid var(--g2)}footer a{color:var(--r)}
 /* Vistas: la web principal (#mv), la tienda (#tv) y los entrenadores (#ev) se alternan con la clase del body */
 #tv,#ev{display:none}body.st #mv,body.et #mv{display:none}body.st #tv,body.et #ev{display:block}
 /* Puntos del carrusel (solo móvil) */
 .dots{display:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.mq div,.route,.pin,#wa:before{animation:none}html{scroll-behavior:auto}}
-@media(hover:none){.card:hover{transform:none;box-shadow:0 10px 30px rgba(21,23,28,.06)}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.route,.pin{animation:none}html{scroll-behavior:auto}}
+@media(hover:none){.card:hover{transform:none;box-shadow:0 6px 20px rgba(21,23,28,.07)}}
 /* ===== Optimización para celulares ===== */
 @media(max-width:860px){
  #bg{display:block}
  nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:#fff}                 /* sin desenfoque: mucho más fluido */
  nav ul{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;flex-direction:column;gap:6px;background:#fff;border:1px solid var(--g2);border-radius:20px;padding:16px 22px;box-shadow:0 12px 30px rgba(0,0,0,.1)}nav ul.open{display:flex}
- section{padding:52px 5%}.hero{grid-template-columns:1fr;min-height:auto;padding-top:104px}
+ section{padding:40px 5%;margin:18px auto}.hero{min-height:auto;margin-top:92px}.top{margin-top:92px}
  .shop{grid-template-columns:1fr}
  /* Planes y Sala Relax como carrusel horizontal con "imán" (scroll-snap) */
  #pl,#rl{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -5%;padding:8px 5% 16px;scrollbar-width:none;overscroll-behavior-x:contain}
@@ -98,6 +93,53 @@ footer{text-align:center;padding:34px 5%;color:var(--g3);border-top:1px solid va
  .btn,.chips button{min-height:44px}
  section.rv{content-visibility:auto;contain-intrinsic-size:auto 700px}                    /* no pinta lo que está lejos de la pantalla */
 }
+
+/* ===== Color, sombras y movimiento (v3) =====
+   Todo el movimiento usa solo transform/opacity (ligero en móvil) y se apaga con prefers-reduced-motion. */
+body:before{inset:-10%;background:radial-gradient(520px 420px at 12% 8%,rgba(217,4,41,.17),transparent 70%),radial-gradient(560px 460px at 92% 38%,rgba(120,134,170,.24),transparent 70%),radial-gradient(520px 420px at 25% 95%,rgba(255,120,140,.15),transparent 70%),#E7E9ED;animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.06)}}
+@keyframes up{from{opacity:0;transform:translateY(22px)}}
+@keyframes flow{to{background-position:-200% 0}}
+#sp{position:fixed;top:0;left:0;height:3px;width:100%;z-index:70;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--r),#ff5a73)}
+nav{box-shadow:0 12px 32px -10px rgba(217,4,41,.22),0 4px 14px rgba(21,23,28,.08)}
+/* Paneles: sombra más profunda con un toque rojo, mancha rosa en una esquina y barra de color arriba */
+section{position:relative;background:radial-gradient(640px 280px at 100% 0,rgba(217,4,41,.06),transparent 70%),#fff;box-shadow:0 20px 50px -14px rgba(21,23,28,.20),0 2px 8px rgba(217,4,41,.07)}
+.card{box-shadow:0 12px 28px -10px rgba(21,23,28,.18),0 2px 6px rgba(217,4,41,.06)}
+@media(hover:hover){.card:hover{box-shadow:0 22px 44px -12px rgba(217,4,41,.30),0 4px 10px rgba(21,23,28,.08)}}
+.pop{background:linear-gradient(150deg,#1d1f26,#3a0d17 130%)}
+.price{background:linear-gradient(90deg,var(--r),#ff5a73);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pop .price{background:none;color:#ff7a8f}
+.btn:not(.o){background:linear-gradient(135deg,#F0123B,var(--r) 55%,var(--rd));box-shadow:0 8px 20px rgba(217,4,41,.28)}
+.btn:not(.o):hover{box-shadow:0 14px 30px rgba(217,4,41,.42)}
+/* Portada: orbes de color que flotan, anillos que laten y entrada escalonada */
+.hero{overflow:hidden;background:radial-gradient(700px 360px at 50% 0,rgba(217,4,41,.11),transparent 70%),linear-gradient(180deg,#fff,#fff4f6)}
+.hero>div{position:relative;z-index:1}
+.orb{position:absolute;border-radius:50%;pointer-events:none;animation:float 9s ease-in-out infinite alternate}
+.o1{width:340px;height:340px;left:-90px;bottom:-120px;background:radial-gradient(circle,rgba(217,4,41,.22),transparent 68%)}
+.o2{width:300px;height:300px;right:-70px;top:-90px;background:radial-gradient(circle,rgba(255,120,140,.28),transparent 68%);animation-delay:-4s}
+@keyframes float{to{transform:translate3d(26px,-18px,0) scale(1.08)}}
+.rg{position:absolute;left:50%;top:50%;width:min(560px,86%);aspect-ratio:1;translate:-50% -50%;border:1.5px solid rgba(217,4,41,.24);border-radius:50%;pointer-events:none;animation:rg 6s ease-out infinite}
+.rg.r2{animation-delay:-3s}
+@keyframes rg{from{transform:scale(.5);opacity:.9}to{transform:scale(1.3);opacity:0}}
+.hero .eb,.hero .sub,.hero .btn{animation:up .8s both}
+.hero .sub{animation-delay:.3s}.hero .btn{animation-delay:.48s}
+.hero .btn:not(.o){animation:up .8s .48s both,glow 2.8s 1.6s ease-in-out infinite}
+@keyframes glow{0%{box-shadow:0 8px 20px rgba(217,4,41,.28),0 0 0 0 rgba(217,4,41,.35)}70%,100%{box-shadow:0 8px 20px rgba(217,4,41,.28),0 0 0 14px rgba(217,4,41,0)}}
+/* Títulos: el subrayado rojo se dibuja al aparecer la sección; tarjetas entran una tras otra */
+.rv.in :is(.grid,.col,.cn)>.card{animation:up .7s both}
+.rv.in :is(.grid,.col,.cn)>.card:nth-child(2){animation-delay:.1s}.rv.in :is(.grid,.col,.cn)>.card:nth-child(3){animation-delay:.2s}.rv.in :is(.grid,.col,.cn)>.card:nth-child(4){animation-delay:.3s}.rv.in :is(.grid,.col,.cn)>.card:nth-child(5){animation-delay:.4s}
+#tv,#ev{animation:up .5s ease-out}
+/* Agenda + contacto: dos columnas en escritorio, una en móvil */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.col{display:grid;gap:18px}.col .cn{margin-top:0}
+.cg button{transition:transform .2s,background .2s}.cg button:hover{transform:scale(1.07)}
+.cg button.ev{background:rgba(217,4,41,.09)}.cg button.sel{background:var(--r);color:#fff;border-color:var(--r)}.cg button.sel:after{background:#fff}
+#ed p{border-left:3px solid var(--r);padding-left:12px}#ed p.sub{border:0;padding:0}
+.ci svg{transition:transform .3s}.ci:hover svg{transform:scale(1.15) rotate(-6deg)}
+@media(max-width:860px){.duo{grid-template-columns:1fr}.cal{padding:16px}.rg{width:96%}.o1,.o2{width:240px;height:240px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}.orb,.rg{display:none}}
+/* Eventos a todo el ancho bajo calendario y contacto; planes en 4 columnas en escritorio */
+#ed{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 22px}#ed>br{display:none}#ed h3{grid-column:1/-1}.ch{text-transform:none}#mt{display:inline-block}#mt::first-letter{text-transform:uppercase}
+@media(min-width:861px){#pl{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
 </style></head><body>
 <!-- Símbolos SVG reutilizables: logo (mancuerna), WhatsApp, Instagram -->
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -106,49 +148,53 @@ footer{text-align:center;padding:34px 5%;color:var(--g3);border-top:1px solid va
 <symbol id="ig" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm5 3.500a4.500 4.500 0 110 9 4.500 4.500 0 010-9zm0 2a2.500 2.500 0 100 5 2.500 2.500 0 000-5zM17.300 5.800a1.100 1.100 0 110 2.200 1.100 1.100 0 010-2.200z"/></symbol></defs></svg>
 
 <!-- NAVEGACIÓN: logo + enlaces; en móvil el botón ☰ (#bg) abre/cierra el menú (#mn) -->
+<div id="sp"></div>
 <nav><a class="logo" href="#inicio"><svg width="34" height="34"><use href="#lg"/></svg>GYM PERDIGÓN</a><button id="bg" aria-label="Menú">☰</button>
-<ul id="mn"><li><a href="#inicio">Inicio</a></li><li><a href="#planes">Planes</a></li><li><a href="#relax">Sala Relax</a></li><li><a href="#equipos">Equipos</a></li><li><a href="#calendario">Calendario</a></li><li><a href="#tienda">Tienda</a></li></ul></nav>
+<ul id="mn"><li><a href="#inicio">Inicio</a></li><li><a href="#planes">Planes</a></li><li><a href="#relax">Sala Relax</a></li><li><a href="#equipos">Equipos</a></li><li><a href="#tienda">Tienda</a></li><li><a href="#calendario">Calendario</a></li><li><a href="#contacto">Contacto</a></li></ul></nav>
 
 <!-- ===== VISTA 1: WEB PRINCIPAL (#mv) ===== -->
 <div id="mv">
 <!-- Inicio: presentación, estadísticas animadas, mapa de ubicación y contactos -->
-<section class="hero" id="inicio"><div>
+<section class="hero" id="inicio"><i class="orb o1"></i><i class="orb o2"></i><i class="rg"></i><i class="rg r2"></i><div>
  <p class="eb">Gimnasio · Relax · Bienestar</p>
  <h1>GYM<br><em>PERDIGÓN</em></h1>
- <p class="sub">Entrena con estilo, recupérate con calma. Planes, entrenadores, sala de relajación y tienda en un solo lugar.</p>
+ <p class="sub">Entrena con estilo, recupérate con calma.</p>
  <a class="btn" href="#planes">Ver planes</a> <a class="btn o" href="#relax">Sala Relax</a>
- <div class="stats"><div><b data-n="9">0</b><span>Entrenadores</span></div><div><b data-n="3">0</b><span>Equipos</span></div><div><b data-n="4">0</b><span>Planes</span></div></div>
-</div>
-<div>
- <!-- Mapa ilustrado: calles, ruta animada y pin pulsante. El texto del lugar sale de CFG.place -->
- <div class="card map"><svg viewBox="0 0 400 250" aria-label="Mapa de ubicación">
-  <g stroke="#D5D8DE" stroke-width="10" fill="none" stroke-linecap="round"><path d="M-10 70H410"/><path d="M-10 170H410"/><path d="M90-10V260"/><path d="M270-10V260"/><path d="M0 240L400 20"/></g>
-  <path class="route" d="M30 220C90 190 120 120 200 130S320 80 330 60" stroke="#D90429" stroke-width="3" fill="none"/>
-  <circle cx="330" cy="60" r="10" class="pin" fill="none" stroke="#D90429" stroke-width="2"/><circle cx="330" cy="60" r="6" fill="#D90429"/>
-  <text x="200" y="40" font-size="13" font-weight="700" fill="#15171C" font-family="Georgia,serif">GYM PERDIGÓN</text>
-  <text id="mtx" x="200" y="56" font-size="10.500" fill="#6B7280" font-family="system-ui"></text></svg>
-  <div style="padding:12px 4px 0"><a class="btn" id="mp" target="_blank" rel="noopener">Cómo llegar</a></div></div>
- <div class="cn">
-  <a class="card ci" id="cwa" target="_blank" rel="noopener"><svg><use href="#wi"/></svg><span><b>WhatsApp</b><br><span id="cwn"></span></span></a>
-  <a class="card ci" id="cig" target="_blank" rel="noopener" hidden><svg><use href="#ig"/></svg><span><b>Instagram</b><br>Síguenos</span></a></div>
 </div></section>
-<div class="mq"><div id="mqt"></div></div>
 
 <!-- Planes: diario, semanal, mensual (destacado) y trimestral. En móvil es un carrusel -->
 <section id="planes" class="rv"><p class="eb">Membresías</p><h2>Planes y <em>precios</em></h2><p class="sub">Precios DEMO, a confirmar por el gimnasio.</p><div class="grid" id="pl"></div></section>
 <!-- Sala de relajación (sustituye al spinning): masajes y sauna, con consulta de disponibilidad -->
 <section id="relax" class="rv"><p class="eb">Bienestar</p><h2>Sala de <em>relajación</em></h2><p class="sub">Masajes y sauna para recuperarte. Las plazas son limitadas: consulta disponibilidad antes de venir.</p><div class="grid" id="rl"></div></section>
 <!-- Equipos: resumen + botón que abre la vista aparte de entrenadores -->
-<section id="equipos" class="rv"><p class="eb">Nuestro equipo</p><h2>Entrenadores y <em>equipos</em></h2><p class="sub">Tres equipos de tres entrenadores cada uno. Entra para ver perfiles, precios y horarios.</p><div class="grid" id="es"></div><br><a class="btn" href="#entrenadores">Ver entrenadores y equipos →</a></section>
+<section id="equipos" class="rv"><p class="eb">Nuestro equipo</p><h2>Entrenadores y <em>equipos</em></h2><p class="sub">Tres equipos de tres entrenadores cada uno. Entra para ver todos los entrenadores con sus precios, características y horarios.</p><div class="grid" id="es"></div><br><a class="btn" href="#entrenadores">Ver todos los entrenadores</a></section>
 <!-- Calendario de eventos y competiciones entre equipos -->
-<section id="calendario" class="rv"><p class="eb">Agenda</p><h2>Calendario de <em>eventos</em></h2><p class="sub">Eventos y competiciones entre equipos.</p>
- <div class="grid"><div class="card cal"><div class="ch"><button class="btn o" id="pv" aria-label="Mes anterior">‹</button><span id="mt"></span><button class="btn o" id="nx" aria-label="Mes siguiente">›</button></div><div class="cg" id="cg"></div></div><div class="card" id="ed"></div></div></section>
 <!-- Acceso a la tienda (vista aparte) -->
-<section id="tiendaCta" class="rv"><div class="card" style="text-align:center"><p class="eb">Tienda</p><h2>Todo para tu <em>entrenamiento</em></h2><p class="sub" style="margin:0 auto 20px">Catálogo por categorías con carrito para reservar tu compra.</p><a class="btn" href="#tienda">Entrar a la tienda →</a></div></section>
+<section id="tiendaCta" class="rv" style="text-align:center"><p class="eb">Tienda</p><h2>Todo para tu <em>entrenamiento</em></h2><p class="sub" style="margin:0 auto 22px">Catálogo por categorías con carrito para reservar tu compra.</p><a class="btn" href="#tienda">Entrar a la tienda</a></section>
+<!-- Contacto y cómo llegar (al final de la web principal) -->
+<section id="contacto" class="rv"><p class="eb">Agenda y contacto</p><h2>Eventos, contacto y <em>cómo llegar</em></h2><p class="sub">Mira los próximos eventos, escríbenos o ven a visitarnos.</p>
+<div class="duo">
+ <div class="col" id="calendario">
+  <div class="card cal"><div class="ch"><button class="btn o" id="pv" aria-label="Mes anterior">‹</button><span id="mt"></span><button class="btn o" id="nx" aria-label="Mes siguiente">›</button></div><div class="cg" id="cg"></div></div>
+ </div>
+ <div class="col">
+  <div class="card map"><svg viewBox="0 0 400 250" aria-label="Mapa de ubicación">
+  <g stroke="#D5D8DE" stroke-width="10" fill="none" stroke-linecap="round"><path d="M-10 70H410"/><path d="M-10 170H410"/><path d="M90-10V260"/><path d="M270-10V260"/><path d="M0 240L400 20"/></g>
+  <path class="route" d="M30 220C90 190 120 120 200 130S320 80 330 60" stroke="#D90429" stroke-width="3" fill="none"/>
+  <circle cx="330" cy="60" r="10" class="pin" fill="none" stroke="#D90429" stroke-width="2"/><circle cx="330" cy="60" r="6" fill="#D90429"/>
+  <text x="200" y="40" font-size="13" font-weight="700" fill="#15171C" font-family="Georgia,serif">GYM PERDIGÓN</text>
+  <text id="mtx" x="200" y="56" font-size="10.500" fill="#6B7280" font-family="system-ui"></text></svg>
+  <div style="padding:12px 4px 0"><a class="btn" id="mp" target="_blank" rel="noopener">Cómo llegar</a></div></div>
+  <div class="cn" style="margin-top:0;align-content:start">
+  <a class="card ci" id="cwa" target="_blank" rel="noopener"><svg><use href="#wi"/></svg><span><b>WhatsApp</b><br><span id="cwn"></span></span></a>
+  <a class="card ci" id="cig" target="_blank" rel="noopener" hidden><svg><use href="#ig"/></svg><span><b>Instagram</b><br>Síguenos</span></a></div>
+ </div>
+</div>
+<div class="card" id="ed" style="margin-top:22px"></div></section>
 </div>
 
 <!-- ===== VISTA 2: TIENDA (#tv, se abre con #tienda) ===== -->
-<div id="tv"><section style="padding-top:110px"><a class="btn o" href="#inicio">← Volver al gimnasio</a><h2 style="margin-top:22px">Tienda</h2><p class="sub">Productos DEMO. Reserva tu pedido por WhatsApp.</p>
+<div id="tv"><section class="top"><a class="btn o" href="#inicio">← Volver al gimnasio</a><p class="eb" style="margin-top:22px">Tienda del gimnasio</p><h2>Tienda</h2><p class="sub">Productos DEMO. Reserva tu pedido por WhatsApp.</p>
 <input id="q" placeholder="Buscar producto…" aria-label="Buscar"><div class="chips" id="cs"></div>
 <!-- Panel de administración: solo lo ve quien puede editar el artifact (el dueño) -->
 <div class="card" id="ad" hidden style="margin-bottom:22px"><h3>Administración del catálogo</h3><p class="sub" style="margin:6px 0">Solo la ves tú como administrador. Los cambios se reflejan al instante en la tienda.</p>
@@ -158,10 +204,9 @@ footer{text-align:center;padding:34px 5%;color:var(--g3);border-top:1px solid va
  <aside class="card" style="position:sticky;top:90px"><h3>Reserva</h3><div id="ct" style="margin:12px 0"></div><b>Total: <span class="price" id="tt" style="font-size:1.6rem">0</span></b><br><br><a class="btn" id="co" href="#tienda">Reservar por WhatsApp</a></aside></div></section></div>
 
 <!-- ===== VISTA 3: ENTRENADORES Y EQUIPOS (#ev, se abre con #entrenadores) ===== -->
-<div id="ev"><section style="padding-top:110px"><a class="btn o" href="#inicio">← Volver al gimnasio</a><h2 style="margin-top:22px">Entrenadores y <em>equipos</em></h2><p class="sub">Datos DEMO: se reemplazan con los reales.</p><div id="eq"></div></section></div>
+<div id="ev"><section class="top"><a class="btn o" href="#inicio">← Volver al gimnasio</a><p class="eb" style="margin-top:22px">Nuestro equipo</p><h2>Entrenadores y <em>equipos</em></h2><p class="sub">Todos los entrenadores con sus características, precios y horarios. Datos DEMO: se reemplazan con los reales.</p><div id="eq"></div></section></div>
 
 <footer>© GYM PERDIGÓN <span id="fig"></span></footer>
-<a id="wa" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><use href="#wi"/></svg></a>
 
 <script>
 /* ============================================================
@@ -185,12 +230,11 @@ const B=(t,m,c='')=>`<a class="btn ${c}" target="_blank" rel="noopener" href="${
 const li=s=>s.split(';').map(x=>`<li>${E(x.trim())}</li>`).join('');   // convierte "a; b" en lista
 
 /* Contactos del inicio y botón flotante, tomados de CFG */
-$('#cwa').href=$('#wa').href=wa('Hola, quiero información de GYM PERDIGÓN');
+$('#cwa').href=wa('Hola, quiero información de GYM PERDIGÓN');
 $('#cwn').textContent='+'+CFG.wa;
 if(CFG.ig){$('#cig').href=CFG.ig;$('#cig').hidden=false}
 $('#mtx').textContent=CFG.place||'Dirección por definir';
 $('#mp').href='https://www.google.com/maps/search/'+encodeURIComponent('GYM Perdigón '+CFG.place);
-$('#mqt').textContent=('FUERZA · ELEGANCIA · RELAX · DISCIPLINA · ').repeat(8); // cinta que se desplaza
 
 /* ---- 3. DATOS DEMO Y TARJETAS ---- */
 // Planes: [nombre, duración, incluye (separado por ;), ¿destacado?]
@@ -200,9 +244,10 @@ $('#pl').innerHTML=plans.map(p=>`<div class="card ${p[3]?'pop':''}">${p[3]?'<spa
 const rl=[['Masaje relajante','Sesión de 45 min','Masaje corporal; Aceites; Música ambiente'],['Sauna','Sesión de 30 min','Sauna seca; Toalla; Ducha'],['Pack masaje + sauna','Sesión combinada','Masaje relajante; Sauna; Reserva prioritaria']];
 $('#rl').innerHTML=rl.map(p=>`<div class="card"><span class="demo">DEMO</span><h3>${p[0]}</h3><div class="price">$ demo</div><p>${p[1]}</p><ul class="l">${li(p[2])}</ul><p class="sub" style="font-size:.8rem;margin:0 0 14px">Horarios: por definir</p>${B('Preguntar disponibilidad','Consulta de disponibilidad en la sala de relajación: '+p[0])}</div>`).join('');
 // Equipos: [nombre, especialidad]. Se usan en el resumen (#es) y en la vista de entrenadores (#eq)
-const tm=[['Rubí','Fuerza y musculación'],['Plata','Cardio y resistencia'],['Ónix','Funcional y movilidad']];
+// tercer dato: características del equipo (DEMO)
+const tm=[['Rubí','Fuerza y musculación','Rutinas de fuerza; Técnica de levantamiento; Seguimiento de progreso'],['Plata','Cardio y resistencia','Plan de cardio; Control de ritmo y resistencia; Seguimiento de progreso'],['Ónix','Funcional y movilidad','Circuitos funcionales; Movilidad y flexibilidad; Seguimiento de progreso']];
 $('#es').innerHTML=tm.map(t=>`<div class="card"><h3>Equipo ${t[0]}</h3><p style="color:var(--r);font-weight:700">${t[1]}</p><p class="sub" style="margin:6px 0 0">3 entrenadores · precios y horarios en cada ficha</p></div>`).join('');
-$('#eq').innerHTML=tm.map(t=>`<div class="team"><h3>Equipo ${t[0]} · <em>${t[1]}</em></h3><div class="grid">${[1,2,3].map(n=>`<div class="card"><div class="ph">Foto (DEMO)</div><h3 style="font-size:1.3rem">Entrenador ${t[0][0]}${n}</h3><p style="color:var(--r);font-weight:700">${t[1]}</p><p class="sub" style="margin:6px 0">Perfil de ejemplo. Reemplazar con datos reales.</p><p>Precio: <b style="color:var(--r)">$ demo</b></p><p>Horario: por definir</p><br>${B('Contactar','Quiero entrenar con el equipo '+t[0]+', entrenador '+n)}</div>`).join('')}</div></div>`).join('');
+$('#eq').innerHTML=tm.map(t=>`<div class="team"><h3>Equipo ${t[0]} · <em>${t[1]}</em></h3><div class="grid">${[1,2,3].map(n=>`<div class="card"><div class="ph">Foto (DEMO)</div><h3 style="font-size:1.3rem">Entrenador ${t[0][0]}${n}</h3><p style="color:var(--r);font-weight:700">${t[1]}</p><span class="demo">DEMO</span><p style="font-weight:700;margin-top:8px">Características</p><ul class="l">${li(t[2])}</ul><p>Precio por sesión: <b style="color:var(--r)">$ demo</b></p><p>Horario: por definir</p><br>${B('Contactar','Quiero entrenar con el equipo '+t[0]+', entrenador '+n)}</div>`).join('')}</div></div>`).join('');
 
 /* ---- 4. CALENDARIO ---- */
 // Eventos DEMO: n nombre, d fecha AAAA-MM-DD, h hora, t descripción
@@ -252,16 +297,20 @@ $('#q').oninput=shop;shop();
 
 /* ---- 6. RUTAS / VISTAS ----
    #tienda -> tienda, #entrenadores -> entrenadores; cualquier otro hash hace scroll a su sección */
-function route(){const h=location.hash.slice(1);document.body.classList.toggle('st',h=='tienda');document.body.classList.toggle('et',h=='entrenadores');$('#mn').classList.remove('open');
- if(h=='tienda'||h=='entrenadores')scrollTo(0,0);else if(h&&$('#'+h))setTimeout(()=>$('#'+h).scrollIntoView(),30)}
+function route(h){if(typeof h!=='string')h=location.hash.slice(1);   // h = vista pedida (también llega desde los clics)
+ document.body.classList.toggle('st',h=='tienda');document.body.classList.toggle('et',h=='entrenadores');$('#mn').classList.remove('open');
+ if(h=='tienda'||h=='entrenadores')scrollTo({top:0,behavior:'instant'});
+ else if(h){let t=null;try{t=$('#'+h)}catch(e){}if(t)setTimeout(()=>t.scrollIntoView({behavior:'smooth'}),30)}}
 addEventListener('hashchange',route);route();$('#bg').onclick=()=>$('#mn').classList.toggle('open');
+// Cualquier enlace interno (#tienda, #entrenadores, #inicio, menú...) cambia de vista aquí mismo, aunque el navegador no dispare hashchange
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href').slice(1);if(!h)return;e.preventDefault();try{location.hash=h}catch(_){}route(h)});
+// Barra de progreso de scroll arriba del todo
+const sp=$('#sp');let tk=0;addEventListener('scroll',()=>{if(tk)return;tk=requestAnimationFrame(()=>{tk=0;const m=document.documentElement.scrollHeight-innerHeight;sp.style.transform='scaleX('+(m>0?Math.min(1,scrollY/m):0)+')'})},{passive:true});
 
 /* ---- 7. ANIMACIONES Y CARRUSELES ---- */
-// Aparición al hacer scroll + contador animado de estadísticas; cada elemento se deja de observar al aparecer
+// Aparición al hacer scroll; cada elemento se deja de observar al aparecer
 const io=new IntersectionObserver(r=>r.forEach(x=>{if(!x.isIntersecting)return;x.target.classList.add('in');io.unobserve(x.target)}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(x=>io.observe(x));
-const co=new IntersectionObserver(r=>r.forEach(x=>{if(!x.isIntersecting)return;const e=x.target,n=+e.dataset.n;let i=0;const t=setInterval(()=>{e.textContent=++i;if(i>=n)clearInterval(t)},120);co.unobserve(e)}));
-document.querySelectorAll('[data-n]').forEach(x=>co.observe(x));
 // Puntos indicadores para los carruseles móviles (en escritorio están ocultos por CSS)
 ['pl','rl'].forEach(id=>{const c=$('#'+id),d=document.createElement('div'),n=c.children.length;d.className='dots';c.after(d);d.innerHTML='<i></i>'.repeat(n);
  const u=()=>{const i=Math.round(c.scrollLeft/(c.scrollWidth-c.clientWidth||1)*(n-1));[...d.children].forEach((x,k)=>x.className=k==i?'on':'')};c.addEventListener('scroll',u,{passive:true});u()});
